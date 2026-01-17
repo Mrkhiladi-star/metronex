@@ -1,3 +1,5 @@
+"use server";
+
 import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
 import Tourist from "@/models/Tourist";

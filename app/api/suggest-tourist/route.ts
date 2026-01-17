@@ -1,3 +1,5 @@
+"use server";
+
 import { connectDB } from "@/lib/db";
 import Tourist from "@/models/Tourist";
 

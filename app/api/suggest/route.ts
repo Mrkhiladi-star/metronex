@@ -1,3 +1,5 @@
+"use server";
+
 import { connectDB } from "@/lib/db";
 import Station from "@/models/Station";
 import Fuse from "fuse.js";
