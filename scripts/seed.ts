@@ -1,9 +1,9 @@
 import "dotenv/config";
 
-import { connectDB } from "../lib/db.ts";
-import Station from "../models/Station.ts";
-import Tourist from "../models/Tourist.ts";
-import Card from "../models/Card.ts";
+import { connectDB } from "../lib/db";
+import Station from "../models/Station";
+import Tourist from "../models/Tourist";
+import Card from "../models/Card";
 
 interface NextStation {
   stationIndex: number;

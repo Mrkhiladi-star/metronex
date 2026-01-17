@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 
 export default function Home() {
   const items = [
@@ -15,9 +15,9 @@ export default function Home() {
       {items.map((item) => (
         <Link key={item.title} href={item.link}>
           <Card className="hover:shadow-lg transition cursor-pointer">
-            <CardContent className="p-6 text-center font-semibold">
+            <div className="p-6 text-center font-semibold">
               {item.title}
-            </CardContent>
+            </div>
           </Card>
         </Link>
       ))}

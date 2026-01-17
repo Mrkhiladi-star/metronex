@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
 import { Sun, Moon, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 
 const links = [
@@ -20,6 +20,12 @@ export default function Navbar() {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Prevent hydration mismatch
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="w-full border-b bg-white dark:bg-neutral-900 dark:border-neutral-700">
@@ -27,8 +33,6 @@ export default function Navbar() {
 
         {/* Logo + Name */}
         <Link href="/" className="flex items-center space-x-3">
-          
-          {/* Circular Logo Box */}
           <div className="w-14 h-14 rounded-full overflow-hidden shadow-md border dark:border-neutral-700 bg-white flex items-center justify-center">
             <Image
               src="/logo.svg"
@@ -61,12 +65,14 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* Theme Toggle */}
+          {/* Theme Toggle (hydration safe) */}
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             className="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-700 transition"
           >
-            {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+            {mounted ? (
+              theme === "light" ? <Moon size={20} /> : <Sun size={20} />
+            ) : null}
           </button>
         </div>
 
@@ -90,11 +96,14 @@ export default function Navbar() {
             </Link>
           ))}
 
+          {/* Mobile Theme Button (hydration safe) */}
           <button
             onClick={() => setTheme(theme === "light" ? "dark" : "light")}
             className="p-2 rounded hover:bg-gray-200 dark:hover:bg-neutral-700 transition"
           >
-            {theme === "light" ? <Moon size={20} /> : <Sun size={20} />}
+            {mounted ? (
+              theme === "light" ? <Moon size={20} /> : <Sun size={20} />
+            ) : null}
           </button>
         </div>
       )}
