@@ -7,11 +7,10 @@ export default function ExplorePage() {
   const [places, setPlaces] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch tourist places from API
   useEffect(() => {
     const fetchPlaces = async () => {
       try {
-        const res = await fetch("/api/suggest-tourist");
+        const res = await fetch("/api/tourists");
         const data = await res.json();
         setPlaces(data);
       } catch (err) {
