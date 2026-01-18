@@ -1,8 +1,6 @@
 "use server";
-
 import { connectDB } from "@/lib/db";
 import Tourist from "@/models/Tourist";
-
 export async function GET() {
   try {
     await connectDB();

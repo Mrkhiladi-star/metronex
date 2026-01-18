@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
-
 export default function Home() {
   const items = [
     { title: "Find Route", link: "/route" },
@@ -9,7 +8,6 @@ export default function Home() {
     { title: "Metro Map", link: "/map" },
     { title: "Explore Lucknow", link: "/explore" },
   ];
-
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-6">
       {items.map((item) => (

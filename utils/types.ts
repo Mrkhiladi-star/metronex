@@ -3,7 +3,6 @@ export interface NextStation {
   weight: number;
   line: string;
 }
-
 export interface StationDoc {
   name: string;
   index: number;

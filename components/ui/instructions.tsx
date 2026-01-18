@@ -1,10 +1,7 @@
 "use client";
-
 import { MapPin } from "lucide-react";
-
 export default function Instructions({ steps }: { steps: string[] }) {
   if (!steps || steps.length === 0) return null;
-
   return (
     <div className="space-y-2">
       {steps.map((step, index) => (

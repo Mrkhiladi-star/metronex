@@ -1,13 +1,10 @@
 "use client";
 export const dynamic = "force-dynamic";
-
 import { useEffect, useState } from "react";
 import TouristCard from "@/components/ui/tourist-card";
-
 export default function ExplorePage() {
   const [places, setPlaces] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const load = async () => {
       try {
@@ -20,14 +17,12 @@ export default function ExplorePage() {
         setLoading(false);
       }
     };
-
     load();
   }, []);
 
   return (
     <div className="mt-6 space-y-6">
       <h1 className="text-xl font-semibold">Explore Lucknow</h1>
-
       {loading ? (
         <p>Loading places...</p>
       ) : (

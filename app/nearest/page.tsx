@@ -1,39 +1,29 @@
 "use client";
-
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MapPin, LandPlot } from "lucide-react";
-
 export default function NearestPage() {
   const [place, setPlace] = useState("");
   const [result, setResult] = useState<any>(null);
   const [suggestions, setSuggestions] = useState<string[]>([]);
-
   const fetchSuggestions = async (q: string) => {
     if (q.length === 0) return setSuggestions([]);
-
     const res = await fetch(`/api/suggest?q=${q}`);
     const data = await res.json();
-
     setSuggestions(data);
   };
-
   const findNearest = async () => {
     const res = await fetch("/api/nearest", {
       method: "POST",
       body: JSON.stringify({ place }),
     });
-
     const data = await res.json();
     setResult(data);
   };
-
   return (
     <div className="mt-6 space-y-6 max-w-xl mx-auto">
       <h1 className="text-xl font-semibold">Nearest Metro Station</h1>
-
-      {/* Input */}
       <div className="relative">
         <Input
           placeholder="Enter tourist place"
@@ -43,7 +33,6 @@ export default function NearestPage() {
             fetchSuggestions(e.target.value);
           }}
         />
-
         {suggestions.length > 0 && (
           <div className="absolute w-full bg-card text-card-foreground border rounded shadow z-10 mt-1">
             {suggestions.map((s) => (
@@ -61,17 +50,13 @@ export default function NearestPage() {
           </div>
         )}
       </div>
-
       <Button onClick={findNearest}>Find Nearest Station</Button>
-
-      {/* RESULT */}
       {result && !result.error && (
         <div className="p-4 border bg-card text-card-foreground rounded-lg space-y-3">
           <div className="flex items-center space-x-3">
             <LandPlot className="text-blue-600 dark:text-blue-300 w-6 h-6" />
             <h3 className="text-lg font-semibold">{result.place}</h3>
           </div>
-
           <div className="flex items-center space-x-3 mt-2">
             <MapPin className="text-red-600 dark:text-red-400 w-6 h-6" />
             <p className="text-md">
@@ -81,7 +66,6 @@ export default function NearestPage() {
               </span>
             </p>
           </div>
-
           {result.correctedFrom && (
             <p className="text-sm text-muted-foreground">
               Corrected from: <strong>{result.correctedFrom}</strong>
@@ -89,8 +73,6 @@ export default function NearestPage() {
           )}
         </div>
       )}
-
-      {/* ERROR */}
       {result && result.error && (
         <div className="p-4 border bg-destructive/10 text-destructive rounded-lg">
           <p className="font-medium">Place not found.</p>

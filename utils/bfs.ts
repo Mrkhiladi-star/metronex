@@ -1,5 +1,4 @@
 import { StationDoc } from "./types";
-
 export function bfsRoute(
   graph: StationDoc[],
   src: number,
@@ -25,8 +24,6 @@ export function bfsRoute(
       }
     }
   }
-
-  // reconstruct path
   const path = [];
   let cur = dest;
 
@@ -34,6 +31,5 @@ export function bfsRoute(
     path.push(cur);
     cur = parent[cur] ?? -1;
   }
-
   return path.reverse();
 }

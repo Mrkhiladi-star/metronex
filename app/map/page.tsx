@@ -1,5 +1,4 @@
 import Image from "next/image";
-
 export default function MapPage() {
   return (
     <div className="mt-6 max-w-4xl mx-auto">

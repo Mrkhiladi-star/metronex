@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const stationSchema = new mongoose.Schema({
   name: String,
   index: Number,
@@ -11,6 +10,5 @@ const stationSchema = new mongoose.Schema({
     }
   ]
 });
-
 export default mongoose.models.Station ||
   mongoose.model("Station", stationSchema);
