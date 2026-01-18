@@ -1,4 +1,5 @@
 "use client";
+export const dynamic = "force-dynamic";
 
 import { useEffect, useState } from "react";
 import TouristCard from "@/components/ui/tourist-card";
@@ -8,9 +9,9 @@ export default function ExplorePage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPlaces = async () => {
+    const load = async () => {
       try {
-        const res = await fetch("/api/tourists");
+        const res = await fetch("/api/tourists", { cache: "no-store" });
         const data = await res.json();
         setPlaces(data);
       } catch (err) {
@@ -20,7 +21,7 @@ export default function ExplorePage() {
       }
     };
 
-    fetchPlaces();
+    load();
   }, []);
 
   return (
@@ -28,7 +29,7 @@ export default function ExplorePage() {
       <h1 className="text-xl font-semibold">Explore Lucknow</h1>
 
       {loading ? (
-        <p className="text-gray-600 dark:text-gray-300">Loading places...</p>
+        <p>Loading places...</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {places.map((p: any, i: number) => (
